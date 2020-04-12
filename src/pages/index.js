@@ -1,26 +1,44 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import styled from 'styled-components';
+import styled from "@emotion/styled"
+import { css } from "@emotion/core"
+import { device } from './../utils/device'
 
 const HeroContainer = styled.header`
   height: 100vh;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 80px;
+
+  @media ${device.tablet} {
+    padding: 40px;
+  }
+
+  @media ${device.mobileL} {
+    padding: 20px;
+  }
 `
 
 const HeroSection = styled.div`
-  border-radius: 0.5rem;
   height: 100%;
   width: 100%;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(90deg, #FFAFCC 0%, rgba(255, 189, 252, 0) 77.35%);
+  background: radial-gradient(
+    100% 427.24% at 0% 0%,
+    rgba(255, 0, 0, 0.03) 0%,
+    #ff9dc0 100%
+  );
+  border-radius: 8px;
+
+
 `
 
 const HeroTitle = styled.h1`
@@ -28,12 +46,24 @@ const HeroTitle = styled.h1`
   font-weight: bold;
   margin: 1rem 0;
   color: #fff;
+
+  @media ${device.tablet} {
+    font-size: 48px;
+  }
+
+  @media ${device.mobileL} {
+    font-size: 40px;
+  }
 `
 
 const HeroSubtitle = styled.h3`
   font-size: 24px;
   margin: 1rem 0;
   color: #fff;
+  
+  @media ${device.tablet} {
+    font-size: 20px;
+  }
 `
 
 const WeeklyDoseContainer = styled.div`
@@ -43,10 +73,14 @@ const WeeklyDoseContainer = styled.div`
   align-items: center;
 `
 
-const WeeklyDoseTitle = styled.h5`
+const WeeklyDoseTitle = styled(props => <Link {...props} />)`
   font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `
-
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
@@ -71,9 +105,14 @@ const IndexPage = () => {
           </HeroSection>
         </HeroContainer>
         <WeeklyDoseContainer>
-          <Link to='/rebirth'>
-            <WeeklyDoseTitle>The Rebirth</WeeklyDoseTitle>
-          </Link>
+            <WeeklyDoseTitle to="/rebirth" styles={css`
+              &:active {
+                color: 'pink';
+              }
+              &:hover {
+                color: 'black',
+              }
+            `}>The Rebirth</WeeklyDoseTitle>
         </WeeklyDoseContainer>
       </>
     )
