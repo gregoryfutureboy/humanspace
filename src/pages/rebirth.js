@@ -6,16 +6,19 @@ import styled from '@emotion/styled'
 const RebirthContainer = styled.div`
   height: 100vh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 `
 
 const RebirthEdition = styled.div`
+  grid-column: 3/4;
+  grid-row: 3/4;
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
 `
 
@@ -36,13 +39,17 @@ const EditionDate = styled.div`
 `
 
 const EditionTitle = styled.div`
-  /* font-weight: bold; */
+  grid-column: 4 / span 2;
+  grid-row: 3/4;
+  align-self: flex-end;
   font-size: 1.5rem;
 `
 
 const EditionNav = styled.div`
+  grid-column: 4/ span 2;
+  grid-row: 5/6;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 50%;
   width: 100%;
@@ -67,14 +74,14 @@ const Rebirth = () => {
           <EditionDate>2020</EditionDate>
           <EditionDate>April 12</EditionDate>
         </EditionSection>
-        <EditionTitle>
-          THE
-          <br />
-          REBIRTH
-        </EditionTitle>
       </RebirthEdition>
+      <EditionTitle>
+        THE
+        <br />
+        REBIRTH
+      </EditionTitle>
       <EditionNav>
-        <NavItem to='/peace'>In Search of Peace</NavItem>
+        <NavItem to="/peace">In Search of Peace</NavItem>
       </EditionNav>
     </RebirthContainer>
   )
