@@ -10,6 +10,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: "gatsby-source-contentful",
       options: {
